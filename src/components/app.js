@@ -1,10 +1,12 @@
 import React from 'react';
 import '../assets/css/app.css';
-import logo from '../assets/images/logo.svg';
+import GameState from './game-state';
+import Header from './header';
 
 const App = () => (
     <div className="app">
-        <h1>Memory Match</h1>
+        <Header/>
+        <GameState/>
     </div>
 );
 
