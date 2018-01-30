@@ -1,17 +1,19 @@
 import React from 'react';
+import '../assets/css/card-css.css';
 
-function Card (props) {
-
-    function handleClick () {
-        props.clickCallBack(props.index);
-    }
+export default props => {
+    const { flipCard, card: { front, back, flipped }} = props;
 
     return (
-        <div className="card" onClick={handleClick.bind(this)}>
-            <div className="front" style={{backgroundColor: props.color, display: props.display ? 'block' : 'none'}}/>
-            <div className="back" style={{display: props.display ? 'none' : 'block'}}/>
+        <div className='card-container'>
+            <div className={`card ${flipped ? 'flipped' : ''}`}>
+                <div className='front'>
+                    <img src={front}/>
+                </div>
+                <div onClick={flipCard} className="back">
+                    <img src={back}/>
+                </div>
+            </div>
         </div>
     )
 }
-
-export default Card;
