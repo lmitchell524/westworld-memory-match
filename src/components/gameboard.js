@@ -19,62 +19,67 @@ class GameBoard extends Component{
         }
 
         this.handleClick = this.handleClick.bind(this);
-        this.randomizeCards = this.randomizeCards.bind(this);
+        // this.randomizeCards = this.randomizeCards.bind(this);
+
     }
 
     handleClick(index){
-        const flippedState = this.state.data[index];
+        if(this.state.firstCard !== null && this.state.secondCard !== null){
+            return;
+        }
+
+        const currentCard = this.state.data[index];
+        let firstCard = this.state.firstCard;
+        let matchCounter = this.state.matchCounter;
         let array = this.state.data;
 
-        if(flippedState.clickable === true && this.state.firstCard === null) {
-            flippedState.flipped = true;
-            flippedState.clickable = false;
+        if(!currentCard.flipped && this.state.firstCard === null) {
+            firstCard = currentCard;
+            currentCard.flipped = true;
             this.state.firstCard = true;
-            array[index] = flippedState;
-        } else if (flippedState.clickable === true && this.state.secondCard === null){
-            flippedState.flipped = true;
-            flippedState.clickable = false;
+            array[index] = currentCard;
+        } else if (!currentCard.flipped && this.state.secondCard === null){
+            currentCard.flipped = true;
             this.state.secondCard = true;
-            array[index] = flippedState;
+            array[index] = currentCard;
+            if( firstCard.color === currentCard.color){
+                matchCounter += 1;
+                firstCard = null;
+                this.state.secondCard = null;
+            } else {
+                setTimeout(function() {
+                    firstCard.flipped = false;
+                    currentCard.flipped = false;
+                    console.log('firstCard', firstCard.flipped);
+                }, 1000);
+            }
         }
 
         this.setState({
             data: array,
-            attempts: this.state.attempts + 1
+            attempts: this.state.attempts + 1,
+            matchCounter: matchCounter,
+            firstCard: firstCard,
+            secondCard: this.state.secondCard
         });
         console.log(this.state.attempts);
+        console.log('matchCounter', matchCounter);
     }
 
-    canIClick(){
-
-    }
-
-    randomizeCards(){
-        let cardArray = this.state.data;
-        let j = 0, temp = null;
-
-        for(let i = 0; i < cardArray.length; i++){
-            j = Math.floor(Math.random() * (i+1));
-            temp = cardArray[i];
-            cardArray[i] = cardArray[j];
-            cardArray[j] = temp;
-        }
-    }
-
-    componentDidMount(){
-        this.randomizeCards();
-    }
-
-    // canIClick(index){
-    //     const {currentCardState} = this.state.data[index];
-    //     if(currentCardState.clickable === true && firstCard === null || currentCardState.clickable === true && secondCard === null){
-    //         currentCardState[index].flipped = true;
-    //         currentCardState[index].clickable = false;
-    //     }
+    // randomizeCards(){
+    //     let cardArray = this.state.data;
+    //     let j = 0, temp = null;
     //
-    //     this.setState({
-    //         data: currentCardState
-    //     });
+    //     for(let i = 0; i < cardArray.length; i++){
+    //         j = Math.floor(Math.random() * (i+1));
+    //         temp = cardArray[i];
+    //         cardArray[i] = cardArray[j];
+    //         cardArray[j] = temp;
+    //     }
+    // }
+
+    // componentDidMount(){
+    //     this.randomizeCards();
     // }
 
     render(){
