@@ -19,6 +19,18 @@
     text-align: center;
 }
 
+.app > h1, .app > h3 {
+    text-align: center;
+}
+
+.game-board {
+    display: flex;
+    margin: auto;
+    width: 80vw;
+    flex-wrap: wrap;
+}
+
+
 .card {
     height: 100%;
     width: 14%;
@@ -47,10 +59,10 @@
     display: none;
 }
 
-.statsContainer {
+/* .statsContainer {
     height: 65vh;
     width: 20vw;
     float: left;
     border: 1px solid black;
     margin-left: 2%;
-}
+} */

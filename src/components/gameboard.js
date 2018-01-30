@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Card from './card';
-import data from '../data/data';
+import { doubleArray } from './helper';
+import cardData from '../data/card-data';
 
 
 class GameBoard extends Component{
@@ -8,7 +9,7 @@ class GameBoard extends Component{
         super(props);
 
         this.state = {
-            data: data,
+            cards: [],
             firstCard: null,
             secondCard: null,
             matchCounter: 0,
@@ -19,7 +20,8 @@ class GameBoard extends Component{
         }
 
         this.handleClick = this.handleClick.bind(this);
-        // this.randomizeCards = this.randomizeCards.bind(this);
+        this.randomizeCards = this.randomizeCards.bind(this);
+        this.flipCard = this.flipCard.bind(this);
 
     }
 
@@ -27,71 +29,107 @@ class GameBoard extends Component{
         if(this.state.firstCard !== null && this.state.secondCard !== null){
             return;
         }
-
-        const currentCard = this.state.data[index];
-        let firstCard = this.state.firstCard;
+        const { cards } = this.state;
+        const currentCard = this.state.cards[index];
+        let { firstCard, secondCard } = this.state;
         let matchCounter = this.state.matchCounter;
-        let array = this.state.data;
+        let attempts = this.state.attempts;
+        // let array = this.state.data;
 
         if(!currentCard.flipped && this.state.firstCard === null) {
-            firstCard = currentCard;
-            currentCard.flipped = true;
-            this.state.firstCard = true;
-            array[index] = currentCard;
+            firstCard = index;
+
+            this.flipCard(index);
+            // currentCard.flipped = true;
+            // this.state.firstCard = true;
+            // array[index] = currentCard;
         } else if (!currentCard.flipped && this.state.secondCard === null){
-            currentCard.flipped = true;
-            this.state.secondCard = true;
-            array[index] = currentCard;
-            if( firstCard.color === currentCard.color){
+            // currentCard.flipped = true;
+            // this.state.secondCard = true;
+            debugger;
+            const card1 = cards[firstCard].front;
+            const card2 = cards[index].front;
+            console.log('card 2', card2);
+            console.log('card 1', card1);
+            this.flipCard(index);
+            attempts + 1;
+            // array[index] = currentCard;
+            if( card1 === card2 ){
                 matchCounter += 1;
+
+                if( matchCounter === cards.length/2){
+                    console.log('you won round 1');
+                }
+
                 firstCard = null;
-                this.state.secondCard = null;
+                secondCard = null;
             } else {
                 setTimeout(function() {
-                    firstCard.flipped = false;
-                    currentCard.flipped = false;
-                    console.log('firstCard', firstCard.flipped);
+                    this.flipCard(firstCard);
+                    this.flipCard(secondCard);
+                    firstCard = null;
+                    secondCard = null;
                 }, 1000);
             }
         }
 
         this.setState({
-            data: array,
-            attempts: this.state.attempts + 1,
+            attempts: attempts,
             matchCounter: matchCounter,
             firstCard: firstCard,
-            secondCard: this.state.secondCard
+            secondCard: secondCard
         });
         console.log(this.state.attempts);
         console.log('matchCounter', matchCounter);
     }
 
-    // randomizeCards(){
-    //     let cardArray = this.state.data;
-    //     let j = 0, temp = null;
-    //
-    //     for(let i = 0; i < cardArray.length; i++){
-    //         j = Math.floor(Math.random() * (i+1));
-    //         temp = cardArray[i];
-    //         cardArray[i] = cardArray[j];
-    //         cardArray[j] = temp;
-    //     }
-    // }
+    flipCard(index) {
+        const newCards = this.state.cards.slice();
+
+        newCards[index].flipped = !newCards[index].flipped;
+        //toggles to opposite of what it was
+
+        this.setState({
+            cards: newCards
+        });
+
+    }
+
+    randomizeCards(cardArray){
+        // let cardArray = this.state.cards;
+        let j = 0, temp = null;
+
+        for(let i = 0; i < cardArray.length; i++){
+            j = Math.floor(Math.random() * (i+1));
+            temp = cardArray[i];
+            cardArray[i] = cardArray[j];
+            cardArray[j] = temp;
+        }
+        return cardArray;
+    }
+
 
     // componentDidMount(){
     //     this.randomizeCards();
     // }
 
+    componentDidMount(){
+        this.setState({
+            cards: this.randomizeCards(doubleArray(cardData))
+        });
+    }
+
     render(){
-        const card = this.state.data.map((item, index) => {
-            const currentCard = this.state.data[index];
-            return <Card key={index} index={index} display={currentCard.flipped} clickCallBack={this.handleClick} color={currentCard.color}/>
+        const {cards, matches, attempts} = this.state;
+
+        const cardElements = cards.map((card, index) => {
+            return <Card key={index} flipCard={() => this.handleClick(index)} card={card} />
         });
         return(
-            <div className="gameContainer">
+            <div className="app">
                 <div className="statsContainer"></div>
-                <div className="row">
-                    {card}
+                <div className="game-board">
+                    {cardElements}
                 </div>
             </div>
         )
