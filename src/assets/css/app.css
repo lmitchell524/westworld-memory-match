@@ -43,6 +43,10 @@
     display: none;
 }
 
+.notFlipped {
+    display: none;
+}
+
 .statsContainer {
     height: 65vh;
     width: 20vw;
