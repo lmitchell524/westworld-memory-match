@@ -22,53 +22,52 @@ class GameBoard extends Component{
         this.handleClick = this.handleClick.bind(this);
         this.randomizeCards = this.randomizeCards.bind(this);
         this.flipCard = this.flipCard.bind(this);
+        this.blockClick = false;
+    }
 
+    componentDidMount(){
+        this.setState({
+            cards: this.randomizeCards(doubleArray(cardData))
+        });
     }
 
     handleClick(index){
-        if(this.state.firstCard !== null && this.state.secondCard !== null){
-            return;
-        }
+        if(this.blockClick === true) return;
+
         const { cards } = this.state;
         const currentCard = this.state.cards[index];
         let { firstCard, secondCard } = this.state;
         let matchCounter = this.state.matchCounter;
         let attempts = this.state.attempts;
-        // let array = this.state.data;
+        let cardIndex = null;
 
-        if(!currentCard.flipped && this.state.firstCard === null) {
-            firstCard = index;
+        if(!currentCard.flipped && firstCard === null) {
+            cardIndex = index;
 
             this.flipCard(index);
-            // currentCard.flipped = true;
-            // this.state.firstCard = true;
-            // array[index] = currentCard;
-        } else if (!currentCard.flipped && this.state.secondCard === null){
-            // currentCard.flipped = true;
-            // this.state.secondCard = true;
-            debugger;
+
+        } else if (!currentCard.flipped && secondCard === null){
+            this.blockClick = true;
+            secondCard = index;
             const card1 = cards[firstCard].front;
             const card2 = cards[index].front;
-            console.log('card 2', card2);
-            console.log('card 1', card1);
             this.flipCard(index);
-            attempts + 1;
-            // array[index] = currentCard;
+            attempts++;
+
             if( card1 === card2 ){
-                matchCounter += 1;
+                matchCounter++;
 
                 if( matchCounter === cards.length/2){
                     console.log('you won round 1');
                 }
 
-                firstCard = null;
-                secondCard = null;
+                this.blockClick = false;
             } else {
-                setTimeout(function() {
+                setTimeout(() => {
                     this.flipCard(firstCard);
-                    this.flipCard(secondCard);
+                    this.flipCard(index);
+                    this.blockClick = false;
                     firstCard = null;
-                    secondCard = null;
                 }, 1000);
             }
         }
@@ -76,8 +75,7 @@ class GameBoard extends Component{
         this.setState({
             attempts: attempts,
             matchCounter: matchCounter,
-            firstCard: firstCard,
-            secondCard: secondCard
+            firstCard: cardIndex,
         });
         console.log(this.state.attempts);
         console.log('matchCounter', matchCounter);
@@ -108,17 +106,6 @@ class GameBoard extends Component{
         return cardArray;
     }
 
-
-    // componentDidMount(){
-    //     this.randomizeCards();
-    // }
-
-    componentDidMount(){
-        this.setState({
-            cards: this.randomizeCards(doubleArray(cardData))
-        });
-    }
-
     render(){
         const {cards, matches, attempts} = this.state;
 
@@ -126,10 +113,12 @@ class GameBoard extends Component{
             return <Card key={index} flipCard={() => this.handleClick(index)} card={card} />
         });
         return(
-            <div className="app">
-                <div className="statsContainer"></div>
-                <div className="game-board">
+            <div className="gameContainer">
+                <div className="row">
                     {cardElements}
+                </div>
+                <div className="statsContainer">
+
                 </div>
             </div>
         )
