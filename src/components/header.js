@@ -1,9 +1,10 @@
 import React from 'react';
+import logo from '../assets/images/logo.png';
 
 export default (props) => {
     return(
         <div className="header">
-            <h1 className="logo">Logo Here</h1>
+            <img className='logo' src={logo}/>
         </div>
     )
 }

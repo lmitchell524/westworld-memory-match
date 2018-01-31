@@ -5,14 +5,12 @@ export default props => {
     const { flipCard, card: { front, back, flipped }} = props;
 
     return (
-        <div className='card-container'>
-            <div className={`card ${flipped ? 'flipped' : ''}`}>
-                <div className='front'>
-                    <img src={front}/>
-                </div>
-                <div onClick={flipCard} className="back">
-                    <img src={back}/>
-                </div>
+        <div className={`card ${flipped ? 'flipped' : ''}`}>
+            <div className='front'>
+                <img src={front}/>
+            </div>
+            <div onClick={flipCard} className="back">
+                <img src={back}/>
             </div>
         </div>
     )
