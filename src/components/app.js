@@ -5,8 +5,11 @@ import Header from './header';
 
 const App = () => (
     <div className="app">
-        <Header/>
-        <GameState/>
+        <div className='main'>
+            <Header/>
+            <GameState/>
+            <div className='iris'></div>
+        </div>
     </div>
 );
 

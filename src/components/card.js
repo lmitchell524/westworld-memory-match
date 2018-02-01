@@ -2,7 +2,7 @@ import React from 'react';
 import '../assets/css/card-css.css';
 
 export default props => {
-    const { flipCard, card: { front, back, flipped }} = props;
+    const { flipCard, card: { front, back, flipped, index }} = props;
 
     return (
         <div className={`card ${flipped ? 'flipped' : ''}`}>

@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import Card from './card';
-import { doubleArray } from './helper';
+import { doubleArray, transition } from './helper';
 import cardData from '../data/card-data';
+
 
 
 class GameBoard extends Component{
@@ -12,7 +13,7 @@ class GameBoard extends Component{
             cards: [],
             firstCard: null,
             secondCard: null,
-            matchCounter: 0,
+            matches: 0,
             attempts: 0,
             accuracy: 0,
             totalPossibleMatches: 9,
@@ -37,9 +38,12 @@ class GameBoard extends Component{
         const { cards } = this.state;
         const currentCard = this.state.cards[index];
         let { firstCard, secondCard } = this.state;
-        let matchCounter = this.state.matchCounter;
+        let matches = this.state.matches;
         let attempts = this.state.attempts;
         let cardIndex = null;
+        let dolores = '/assets/images/bfe76d56eef65b611b72f9d26f0ceb9d.jpg';
+        let manInBlack = '/assets/images/6df7f06e574dd016c2ff9d8c37b1519f.jpg';
+        console.log(currentCard);
 
         if(!currentCard.flipped && firstCard === null) {
             cardIndex = index;
@@ -53,15 +57,17 @@ class GameBoard extends Component{
             const card2 = cards[index].front;
             this.flipCard(index);
             attempts++;
-
             if( card1 === card2 ){
-                matchCounter++;
+                matches++;
 
-                if( matchCounter === cards.length/2){
+                if( matches === cards.length/2){
                     console.log('you won round 1');
                 }
 
                 this.blockClick = false;
+            } else if (card1 === dolores && card2 === manInBlack || card1 === manInBlack && card2 === dolores){
+                transition();
+                console.log('game over');
             } else {
                 setTimeout(() => {
                     this.flipCard(firstCard);
@@ -74,11 +80,11 @@ class GameBoard extends Component{
 
         this.setState({
             attempts: attempts,
-            matchCounter: matchCounter,
+            matches: matches,
             firstCard: cardIndex,
         });
-        console.log(this.state.attempts);
-        console.log('matchCounter', matchCounter);
+        console.log('attempts', attempts);
+        console.log('matches', matches);
     }
 
     flipCard(index) {
@@ -94,7 +100,6 @@ class GameBoard extends Component{
     }
 
     randomizeCards(cardArray){
-        // let cardArray = this.state.cards;
         let j = 0, temp = null;
 
         for(let i = 0; i < cardArray.length; i++){
@@ -118,7 +123,7 @@ class GameBoard extends Component{
                     {cardElements}
                 </div>
                 <div className="statsContainer">
-
+                    <div className='accuracy'>Accuracy: {matches > 0 ? Math.floor(matches/attempts * 100) + '%' : 0}</div>
                 </div>
             </div>
         )
