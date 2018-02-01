@@ -5,6 +5,6 @@ export default images.map( (front, index) => {
     return {
         front: front,
         back: back,
-        flipped: false
+        flipped: false,
     }
 })
