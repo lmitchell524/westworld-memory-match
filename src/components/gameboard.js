@@ -17,7 +17,7 @@ class GameBoard extends Component{
             attempts: 0,
             accuracy: 0,
             totalPossibleMatches: 9,
-            gamesPlayed: 0
+            level: 1
         }
 
         this.handleClick = this.handleClick.bind(this);
@@ -35,15 +35,16 @@ class GameBoard extends Component{
     handleClick(index){
         if(this.blockClick === true) return;
 
-        const { cards } = this.state;
+        const { cards} = this.state;
         const currentCard = this.state.cards[index];
-        let { firstCard, secondCard } = this.state;
-        let matches = this.state.matches;
+        let { firstCard, secondCard, level, matches } = this.state;
+        // let matches = this.state.matches;
         let attempts = this.state.attempts;
         let cardIndex = null;
         let dolores = '/assets/images/bfe76d56eef65b611b72f9d26f0ceb9d.jpg';
         let manInBlack = '/assets/images/6df7f06e574dd016c2ff9d8c37b1519f.jpg';
         console.log(currentCard);
+        console.log('level', level);
 
         if(!currentCard.flipped && firstCard === null) {
             cardIndex = index;
@@ -59,18 +60,21 @@ class GameBoard extends Component{
             attempts++;
             if (attempts === 20){
                 transition();
+                console.log('too many shots fired, you lose!!!!');
             }
             if( card1 === card2 ){
                 matches++;
 
                 if( matches === cards.length/2){
-                    console.log('you won round 1');
+                    level++;
+                    console.log('you win, go to next level');
                 }
 
                 this.blockClick = false;
             } else if (card1 === dolores && card2 === manInBlack || card1 === manInBlack && card2 === dolores){
+                console.log('you killed dolores, game over!!');
                 transition();
-                console.log('game over');
+                level++;
             } else {
                 setTimeout(() => {
                     this.flipCard(firstCard);
@@ -85,9 +89,9 @@ class GameBoard extends Component{
             attempts: attempts,
             matches: matches,
             firstCard: cardIndex,
+            level: level
         });
-        console.log('attempts', attempts);
-        console.log('matches', matches);
+        console.log('level', level);
     }
 
     flipCard(index) {
