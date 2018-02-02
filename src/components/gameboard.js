@@ -57,6 +57,9 @@ class GameBoard extends Component{
             const card2 = cards[index].front;
             this.flipCard(index);
             attempts++;
+            if (attempts === 20){
+                transition();
+            }
             if( card1 === card2 ){
                 matches++;
 
@@ -123,8 +126,10 @@ class GameBoard extends Component{
                     {cardElements}
                 </div>
                 <div className="statsContainer">
-                    <div className='accuracy'>Accuracy: {matches > 0 ? Math.floor(matches/attempts * 100) + '%' : 0}</div>
-                </div>
+                    <div className='stats'>Shots Fired: {attempts}</div>
+                    <div className='stats'>Targets Hit: {matches > 0 ? Math.floor(matches/attempts * 100) + '%' : 0}</div>
+                    <div className='stats'>Lives Saved: {matches}</div>
+            </div>
             </div>
         )
     }

@@ -18,18 +18,13 @@ body {
     color: white;
     margin: auto;
     position: relative;
+    font-family: 'PT Sans', sans-serif;
 }
-
-/* .main {
-  height: 100vh;
-  display: block;
-  position: relative;
-} */
 
 .logo{
     margin: 1%;
-    width: 200px;
-    height: 100px;
+    width: 15%;
+    height: 85%;
 }
 
 .statsContainer {
@@ -41,10 +36,18 @@ body {
     transform: translate(-50%, -50%);
     border: 1px solid black;
     background-color: black;
+    text-align: center;
+}
+
+.stats {
+    display: inline-block;
+    font-size: 4vmin;
+    margin: 2%;
 }
 
 .gameContainer {
     width: 80vw;
+    /* max-width: 60vw; */
     margin: auto;
 }
 
@@ -68,3 +71,32 @@ body {
   top: 0;
   background: radial-gradient(transparent 99.98%, black 99.99% , black 100%);
 }
+
+
+/***************** media queries *******************/
+
+@media only screen
+  and (min-width: 360px)
+  and (max-width: 768px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait){
+    .gameContainer {
+        width: 100vw;
+        max-width: 100%;
+    }
+
+    .logo {
+        width: 30%;
+    }
+}
+
+@media only screen
+  and (min-width: 360px)
+  and (max-width: 768px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: landscape) {
+      .gameContainer {
+          max-width: 100%;
+          width: 90vw;
+      }
+  }

@@ -16,12 +16,11 @@ export function doubleArray(array, times = 2){
 }
 
 export function transition(){
-    debugger;
   var timer = null;
   var target = document.querySelector('.iris');
   var irisPercent = 99.99;
-  var irisDeltaPerSecond = 20;
-  var transitionTime = 5000;
+  var irisDeltaPerSecond = 33.3;
+  var transitionTime = 3000;
   var timePerInterval = 10;
   var intervalCount = transitionTime / timePerInterval;
   var irisDeltaPerInterval = irisDeltaPerSecond*(transitionTime/1000) / intervalCount;
