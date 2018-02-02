@@ -3,7 +3,6 @@
     height: 21vh;
     width: 100%;
     margin-bottom: 1%;
-    float: right;
     text-align: center;
 }
 
@@ -26,12 +25,12 @@
     height: 100%;
     backface-visibility: hidden;
     overflow: hidden;
-    border-radius: 18px;
+    border-radius: 13px;
 }
 
 .front {
     transform: rotateY(180deg);
-    border: 2px solid black;
+    /* border: 2px solid black; */
 }
 
 .front img, .back img {
@@ -42,4 +41,46 @@
 
 .flipped {
     transform: rotateY(180deg);
+}
+
+/***************** media queries *******************/
+
+@media only screen
+  and (min-width: 360px)
+  and (max-width: 768px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait){
+    .row {
+        height: 15vh;
+    }
+
+    .card {
+        width: 19%;
+    }
+
+    .front, .back {
+        border-radius: 5px;
+    }
+
+    /* .front {
+        border: 1px solid black;
+    } */
+}
+
+@media only screen
+  and (min-width: 360px)
+  and (max-width: 768px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: landscape) {
+      .row {
+          height: 22vh;
+      }
+
+      .front, .back {
+          border-radius: 5px;
+      }
+
+      /* .front {
+          border: 1px solid black;
+      } */
 }
