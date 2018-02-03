@@ -27,7 +27,6 @@ class GameBoard extends Component{
     }
 
     componentDidMount(){
-        console.log('component did mount');
         this.setState({
             cards: this.randomizeCards(doubleArray(cardData(this.state.level)))
         });
@@ -43,7 +42,6 @@ class GameBoard extends Component{
         let dolores = '/assets/images/bfe76d56eef65b611b72f9d26f0ceb9d.jpg';
         let manInBlack = '/assets/images/6df7f06e574dd016c2ff9d8c37b1519f.jpg';
         console.log(currentCard);
-        console.log('level', level);
 
         if(!currentCard.flipped && firstCard === null) {
             cardIndex = index;
@@ -57,10 +55,12 @@ class GameBoard extends Component{
             const card2 = cards[index].front;
             this.flipCard(index);
             attempts++;
+
             if (attempts === 20){
                 transition();
                 console.log('too many shots fired, you lose!!!!');
             }
+
             if( card1 === card2 ){
                 matches++;
 
@@ -76,14 +76,13 @@ class GameBoard extends Component{
                             firstCard: null,
                         })
                     }, 3500);
-                    console.log('you win, go to next level');
                 }
 
                 this.blockClick = false;
+
             } else if (card1 === dolores && card2 === manInBlack || card1 === manInBlack && card2 === dolores){
                 console.log('you killed dolores, game over!!');
                 transition();
-                // level++;
             } else {
                 setTimeout(() => {
                     this.flipCard(firstCard);
@@ -99,14 +98,12 @@ class GameBoard extends Component{
             matches: matches,
             firstCard: cardIndex,
         });
-        console.log('level', level);
     }
 
     flipCard(index) {
         const newCards = this.state.cards.slice();
 
         newCards[index].flipped = !newCards[index].flipped;
-        //toggles to opposite of what it was
 
         this.setState({
             cards: newCards
@@ -127,19 +124,20 @@ class GameBoard extends Component{
     }
 
     render(){
-        const {cards, matches, attempts} = this.state;
+        const {cards, matches, attempts, level} = this.state;
+        console.log('level', level);
 
         const cardElements = cards.map((card, index) => {
-            return <Card key={index} flipCard={() => this.handleClick(index)} card={card} />
+            return <Card className={`${ level === 3 ? 'cardLevel3' : '' }`}key={index} flipCard={() => this.handleClick(index)} card={card} />
         });
         return(
-            <div className={`main ${ this.state.level === 1 ? 'level1' : 'level2'}`}>
+            <div className={`main ${ level === 2 ? 'level2' : '' } ${ level === 3 ? 'level3' : '' }`}>
                 <Header/>
-                    <div className="gameContainer">
+                    <div className={`gameContainer ${ level === 3 ? 'gameContainerLevel3' : '' }`}>
                         <div className="row">
                             {cardElements}
                         </div>
-                        <div className="statsContainer">
+                        <div className={`statsContainer ${ level === 2 ? 'statsContainerLevel2' : '' } ${ level === 3 ? 'statsContainerLevel3' : '' }`}>
                             <div className='stats'>Shots Fired: {attempts}</div>
                             <div className='stats'>Targets Hit: {matches > 0 ? Math.floor(matches/attempts * 100) + '%' : 0}</div>
                             <div className='stats'>Lives Saved: {matches}</div>

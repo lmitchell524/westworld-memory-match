@@ -37,5 +37,8 @@ export function transition(){
     if(!remainingIntervalCount){
       clearInterval(timer);
     }
+    setTimeout(() => {
+        target.style.display = 'none';
+    }, 3500);
   }
 }

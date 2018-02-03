@@ -17,20 +17,18 @@
     color: white;
     margin: auto;
     position: relative;
-}
-
-.level1 {
-    background-image: url('../images/bg_image3.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    background-image: url('../images/bg_image3.jpg');
 }
 
 .level2 {
     background-image: url('../images/bg_image5.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+}
+
+.level3 {
+    background-image: url('../images/bg_image6.jpg');
 }
 
 .logo{
@@ -51,6 +49,16 @@
     text-align: center;
 }
 
+.statsContainerLevel2 {
+    background-color: #c5cdc5;
+    color: black;
+}
+
+.statsContainerLevel3 {
+    background-color: #1c232c;
+    color: whitesmoke;
+}
+
 .stats {
     display: inline-block;
     font-size: 4vmin;
@@ -61,6 +69,10 @@
     width: 80vw;
     /* max-width: 60vw; */
     margin: auto;
+}
+
+.gameContainerLevel3 {
+    width: 55vw;
 }
 
 
