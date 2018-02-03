@@ -8,7 +8,7 @@ import theresa from '../assets/images/level2/theresa.jpg';
 import william from '../assets/images/level2/william.jpg';
 
 export default [
-    dolores, 
+    dolores,
     armistice,
     hector,
     logan,

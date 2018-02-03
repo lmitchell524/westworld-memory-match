@@ -5,6 +5,7 @@
     margin-bottom: 1%;
     text-align: center;
     cursor: url('../images/cursor.png'), auto;
+    /* cursor: pointer; */
 }
 
 .card {
@@ -15,6 +16,10 @@
     margin-right: 1%;
     transform-style: preserve-3d;
     transition: all .5s ease-in-out;
+}
+
+.cardLevel3 {
+    width: 20%;
 }
 
 .front, .back {
