@@ -67,12 +67,12 @@
 
 .gameContainer {
     width: 80vw;
-    /* max-width: 60vw; */
     margin: auto;
 }
 
-.gameContainerLevel3 {
-    width: 55vw;
+.gameContainer.gameContainerLevel3 {
+    width: 70vmin;
+    height: 70vmin;
 }
 
 
@@ -86,6 +86,17 @@
   left: 0;
   top: 0;
   background: radial-gradient(transparent 99.98%, black 99.99% , black 100%);
+}
+
+
+
+/**************** level 3 css *********************/
+
+.cylinder {
+    position: absolute;
+    top: 10%;
+    left: 20%;
+    height: 75vh;
 }
 
 

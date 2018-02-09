@@ -3,7 +3,7 @@ import images2 from '../data/card-images2';
 import images3 from '../data/card-images3';
 import back from '../assets/images/maze.png';
 import back2 from '../assets/images/bg_image.png';
-import back3 from '../assets/images/card_back2.jpg';
+import back3 from '../assets/images/level3/bullet.png';
 
 export function cardData(level){
     if(level === 1){
@@ -24,7 +24,8 @@ export function cardData(level){
                 flipped: false
             }
         })
-    )} else {
+    )}
+    else {
         return(
             images3.map( (front, index) => {
             return {

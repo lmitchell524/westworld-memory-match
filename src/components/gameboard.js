@@ -3,7 +3,7 @@ import Card from './card';
 import { doubleArray, transition } from './helper';
 import { cardData } from './card-data';
 import Header from './header';
-
+import cylinder from '../assets/images/level3/cylinder.png';
 
 class GameBoard extends Component{
     constructor(props){
@@ -65,7 +65,7 @@ class GameBoard extends Component{
                 matches++;
 
                 if( matches === cards.length/2){
-                    transition();
+                    transition(console.log('game over'));
                     setTimeout(() => {
                         level++;
                         this.setState({
@@ -125,22 +125,24 @@ class GameBoard extends Component{
 
     render(){
         const {cards, matches, attempts, level} = this.state;
+        const positionArr = [ 'one', 'two', 'three', 'four', 'five', 'six'];
         console.log('level', level);
 
         const cardElements = cards.map((card, index) => {
-            return <Card className={`${ level === 3 ? 'cardLevel3' : '' }`}key={index} flipCard={() => this.handleClick(index)} card={card} />
+            return <Card key={index} flipCard={() => this.handleClick(index)} card={card} level={level} position={positionArr[index]}/>
         });
         return(
             <div className={`main ${ level === 2 ? 'level2' : '' } ${ level === 3 ? 'level3' : '' }`}>
                 <Header/>
                     <div className={`gameContainer ${ level === 3 ? 'gameContainerLevel3' : '' }`}>
-                        <div className="row">
-                            {cardElements}
-                        </div>
+                            <div className={ level === 3 ? 'cylinderContainer' : ''}>
+                                { level === 3 ? <img className='cylinder' src={cylinder}/> : '' }
+                                { level === 3 ? cardElements : <div className="row">{cardElements}</div> }
+                            </div>
                         <div className={`statsContainer ${ level === 2 ? 'statsContainerLevel2' : '' } ${ level === 3 ? 'statsContainerLevel3' : '' }`}>
                             <div className='stats'>Shots Fired: {attempts}</div>
                             <div className='stats'>Targets Hit: {matches > 0 ? Math.floor(matches/attempts * 100) + '%' : 0}</div>
-                            <div className='stats'>Lives Saved: {matches}</div>
+                            <div className='stats'>Hosts Killed: {matches}</div>
                         </div>
                     </div>
                 <div className='iris'></div>
