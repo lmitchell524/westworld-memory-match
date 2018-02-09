@@ -18,9 +18,9 @@
     transition: all .5s ease-in-out;
 }
 
-.cardLevel3 {
+/* .cardLevel3 {
     width: 20%;
-}
+} */
 
 .front, .back {
     position: absolute;
@@ -35,7 +35,6 @@
 
 .front {
     transform: rotateY(180deg);
-    /* border: 2px solid black; */
 }
 
 .front img, .back img {
@@ -44,9 +43,9 @@
     height: 100%;
 }
 
-.flipped {
+/* .flipped {
     transform: rotateY(180deg);
-}
+} */
 
 /***************** media queries *******************/
 
@@ -67,9 +66,6 @@
         border-radius: 5px;
     }
 
-    /* .front {
-        border: 1px solid black;
-    } */
 }
 
 @media only screen
@@ -85,7 +81,4 @@
           border-radius: 5px;
       }
 
-      /* .front {
-          border: 1px solid black;
-      } */
 }

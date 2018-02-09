@@ -1,0 +1,54 @@
+.cylinder {
+    height: 70vmin;
+    width: 70vmin;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.cylinderContainer {
+    position: relative;
+    width: 70vmin;
+    height: 70vmin;
+    transition: 1s;
+    transform: rotateZ(720deg);
+}
+
+.one {
+    transform: rotateZ(109deg);
+    bottom: 7.5%;
+    right: 23.5%;
+}
+
+.two {
+    top: 7%;
+    left: 23.5%;
+}
+
+.three {
+    transform: rotateZ(80deg);
+    top: 11%;
+    right: 16%;
+}
+
+.four {
+    transform: rotateZ(300deg);
+    top: 39.5%;
+    right: 4%;
+}
+
+.five {
+    transform: rotateZ(200deg);
+    top: 32%;
+    left: 5%;
+}
+
+.six {
+    bottom: 11%;
+    left: 16%;
+}
+
+.flipped {
+    transform: rotateY(180deg);
+}
