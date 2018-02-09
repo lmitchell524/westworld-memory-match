@@ -4,6 +4,7 @@ import { doubleArray, transition } from './helper';
 import { cardData } from './card-data';
 import Header from './header';
 import cylinder from '../assets/images/level3/cylinder.png';
+import Video from './video';
 
 class GameBoard extends Component{
     constructor(props){
@@ -17,7 +18,8 @@ class GameBoard extends Component{
             attempts: 0,
             accuracy: 0,
             totalPossibleMatches: 9,
-            level: 1
+            level: 1,
+            autoLose: false
         }
 
         this.handleClick = this.handleClick.bind(this);
@@ -82,7 +84,10 @@ class GameBoard extends Component{
 
             } else if (card1 === dolores && card2 === manInBlack || card1 === manInBlack && card2 === dolores){
                 console.log('you killed dolores, game over!!');
-                transition();
+                this.setState({
+                    autoLose: true,
+                }, () => transition(this.state));
+                ;
             } else {
                 setTimeout(() => {
                     this.flipCard(firstCard);
