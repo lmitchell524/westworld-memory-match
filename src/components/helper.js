@@ -1,4 +1,6 @@
+import React from 'react';
 import '../assets/css/app.css';
+import Video from './video';
 
 export function doubleArray(array, times = 2){
 
@@ -15,30 +17,37 @@ export function doubleArray(array, times = 2){
     return newArray;
 }
 
-export function transition(){
-  var timer = null;
-  var target = document.querySelector('.iris');
-  var irisPercent = 99.99;
-  var irisDeltaPerSecond = 33.3;
-  var transitionTime = 3000;
-  var timePerInterval = 10;
-  var intervalCount = transitionTime / timePerInterval;
-  var irisDeltaPerInterval = irisDeltaPerSecond*(transitionTime/1000) / intervalCount;
-  var remainingIntervalCount = intervalCount;
+export function transition(state){
+    console.log('state', state);
+    var timer = null;
+    var target = document.querySelector('.iris');
+    var irisPercent = 99.99;
+    var irisDeltaPerSecond = 33.3;
+    var transitionTime = 3000;
+    var timePerInterval = 10;
+    var intervalCount = transitionTime / timePerInterval;
+    var irisDeltaPerInterval = irisDeltaPerSecond*(transitionTime/1000) / intervalCount;
+    var remainingIntervalCount = intervalCount;
 
-  target.style.display = 'block';
+    const autoLose = state.autoLose;
 
-  timer = setInterval(incrementTransition, timePerInterval);
-  function incrementTransition(){
-    irisPercent -= irisDeltaPerInterval;
-    //console.log(irisPercent);
-    target.style.background = `radial-gradient(transparent ${irisPercent}%, black ${irisPercent+.001}%, black 100%)`;
-    remainingIntervalCount--;
-    if(!remainingIntervalCount){
-      clearInterval(timer);
+    target.style.display = 'block';
+
+    timer = setInterval(incrementTransition, timePerInterval);
+
+    function incrementTransition(){
+        irisPercent -= irisDeltaPerInterval;
+        target.style.background = `radial-gradient(transparent ${irisPercent}%, black ${irisPercent+.001}%, black 100%)`;
+        remainingIntervalCount--;
+        if(!remainingIntervalCount){
+            clearInterval(timer);
+        }
+        setTimeout(() => {
+            if(autoLose){
+                <Video/>
+            } else {
+                target.style.display = 'none';
+            }
+        }, 3500);
     }
-    setTimeout(() => {
-        target.style.display = 'none';
-    }, 3500);
-  }
 }

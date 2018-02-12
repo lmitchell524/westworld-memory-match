@@ -78,17 +78,41 @@
 
 /***************** Iris Effect *******************/
 
-.iris{
-  position: absolute;
-  display: none;
-  height: 100%;
-  width: 100%;
-  left: 0;
-  top: 0;
-  background: radial-gradient(transparent 99.98%, black 99.99% , black 100%);
+.iris {
+    position: absolute;
+    top: 0;
+    margin: auto;
+    width: 100vw;
+    height: 100vh;
+    display: block;
+    /* border-radius: 50%; */
+    box-sizing: border-box;
+    transition: .7s all ease-in;
+    text-decoration: none;
+    border: 0 solid rgba(0,0,0,1);
+    z-index: 1000;
 }
 
+.iris:hover {
+    border: 75vmin solid rgba(0,0,0,1);
+}
 
+/* .iris.animation {
+    background-position: center;
+    background-size: 100vmin 100vmin;
+} */
+
+/**************** level 1 lose screen *********************/
+
+.level1LoseScreen {
+    height: 100vh;
+    width: 100vh;
+    background-color: black;
+}
+
+.playAgain {
+    background-color: whitesmoke;
+}
 
 /**************** level 3 css *********************/
 
