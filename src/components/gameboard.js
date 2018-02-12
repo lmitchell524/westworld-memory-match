@@ -131,7 +131,6 @@ class GameBoard extends Component{
     render(){
         const {cards, matches, attempts, level} = this.state;
         const positionArr = [ 'one', 'two', 'three', 'four', 'five', 'six'];
-        console.log('level', level);
 
         const cardElements = cards.map((card, index) => {
             return <Card key={index} flipCard={() => this.handleClick(index)} card={card} level={level} position={positionArr[index]}/>
@@ -150,7 +149,7 @@ class GameBoard extends Component{
                             <div className='stats'>Hosts Killed: {matches}</div>
                         </div>
                     </div>
-                <div className='iris'></div>
+                <a className='iris'></a>
             </div>
         )
     }
