@@ -87,14 +87,13 @@
     display: block;
     /* border-radius: 50%; */
     box-sizing: border-box;
-    transition: .7s all ease-in;
+    transition: .8s all ease-in;
     text-decoration: none;
     border: 0 solid rgba(0,0,0,1);
-    z-index: 1000;
 }
 
-.iris:hover {
-    border: 75vmin solid rgba(0,0,0,1);
+.iris-activated {
+    border: 75vmin solid rgba(0,0,0,.85);
 }
 
 /* .iris.animation {
@@ -104,14 +103,44 @@
 
 /**************** level 1 lose screen *********************/
 
+iframe {
+    border-radius: 1%;
+    border-style: solid;
+}
+
 .level1LoseScreen {
-    height: 100vh;
-    width: 100vh;
-    background-color: black;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.loseScreenHidden {
+    display: none;
+}
+
+.gameOver {
+    color: white;
+    text-align: center;
+    font-size: 10vmin;
+    padding-bottom: 5%;
+    font-weight: normal;
 }
 
 .playAgain {
-    background-color: whitesmoke;
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+    font-size: 5vmin;
+    display: block;
+    margin: 5% auto;
+    border-radius: 5%;
+    padding: 2%;
+}
+
+.playAgain:hover {
+    cursor: pointer;
+    background-color: #4a4747;
 }
 
 /**************** level 3 css *********************/
