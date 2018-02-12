@@ -19,6 +19,8 @@ class GameBoard extends Component{
             accuracy: 0,
             totalPossibleMatches: 9,
             level: 1,
+            transition: false,
+            nextLevel: false,
             autoLose: false
         }
 
@@ -30,7 +32,8 @@ class GameBoard extends Component{
 
     componentDidMount(){
         this.setState({
-            cards: this.randomizeCards(doubleArray(cardData(this.state.level)))
+            cards: this.randomizeCards(doubleArray(cardData(this.state.level))),
+            transition: false
         });
     }
 
@@ -43,7 +46,6 @@ class GameBoard extends Component{
         let cardIndex = null;
         let dolores = '/assets/images/bfe76d56eef65b611b72f9d26f0ceb9d.jpg';
         let manInBlack = '/assets/images/6df7f06e574dd016c2ff9d8c37b1519f.jpg';
-        console.log(currentCard);
 
         if(!currentCard.flipped && firstCard === null) {
             cardIndex = index;
@@ -59,7 +61,9 @@ class GameBoard extends Component{
             attempts++;
 
             if (attempts === 20){
-                transition();
+                this.setState({
+                    transition: true
+                });
                 console.log('too many shots fired, you lose!!!!');
             }
 
@@ -76,6 +80,7 @@ class GameBoard extends Component{
                             attempts: 0,
                             matches: 0,
                             firstCard: null,
+                            transition: true,
                         })
                     }, 3500);
                 }
@@ -83,11 +88,9 @@ class GameBoard extends Component{
                 this.blockClick = false;
 
             } else if (card1 === dolores && card2 === manInBlack || card1 === manInBlack && card2 === dolores){
-                console.log('you killed dolores, game over!!');
                 this.setState({
-                    autoLose: true,
-                }, () => transition(this.state));
-                ;
+                    transition: true,
+                }), setTimeout(() => {this.setState({autoLose: true})}, 1000);
             } else {
                 setTimeout(() => {
                     this.flipCard(firstCard);
@@ -129,7 +132,8 @@ class GameBoard extends Component{
     }
 
     render(){
-        const {cards, matches, attempts, level} = this.state;
+        const {cards, matches, attempts, level, transition, autoLose} = this.state;
+
         const positionArr = [ 'one', 'two', 'three', 'four', 'five', 'six'];
 
         const cardElements = cards.map((card, index) => {
@@ -149,7 +153,8 @@ class GameBoard extends Component{
                             <div className='stats'>Hosts Killed: {matches}</div>
                         </div>
                     </div>
-                <a className='iris'></a>
+                <a className={ transition ? 'iris iris-activated' : '' }></a>
+                <Video autoLose={autoLose}/>
             </div>
         )
     }
