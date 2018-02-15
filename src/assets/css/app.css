@@ -88,7 +88,6 @@
     margin: auto;
     width: 100vw;
     height: 100vh;
-    display: block;
     /* border-radius: 50%; */
     box-sizing: border-box;
     transition: .8s all ease-in;
@@ -98,6 +97,11 @@
 
 .iris-activated {
     border: 75vmin solid rgba(0,0,0,.85);
+    display: block;
+}
+
+.iris-deactivated {
+    display: none;
 }
 
 /* .iris.animation {
@@ -112,25 +116,14 @@ iframe {
     border-style: solid;
 }
 
-.level1LoseScreen {
+.showScreen {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
-.loseScreenHidden {
-    display: none;
-}
-
-.endGameLoseScreen {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.endGameScreenHidden {
+.hideScreen {
     display: none;
 }
 
@@ -140,6 +133,11 @@ iframe {
     font-size: 9vmin;
     padding-bottom: 5%;
     font-weight: normal;
+}
+
+.winner-text {
+    text-align: center;
+    font-size: 9vmin;
 }
 
 .playAgain {

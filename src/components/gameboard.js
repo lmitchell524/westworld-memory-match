@@ -6,6 +6,7 @@ import Header from './header';
 import cylinder from '../assets/images/level3/cylinder.png';
 import DoloresVideo from './dolores_video';
 import EndGameVideo from './end_game_video';
+import WinnerVideo from './winner_video';
 
 class GameBoard extends Component{
     constructor(props){
@@ -19,11 +20,12 @@ class GameBoard extends Component{
             attempts: 0,
             accuracy: 0,
             totalPossibleMatches: 9,
-            level: 2,
+            level: 1,
             transition: false,
             nextLevel: false,
             autoLose: false,
-            endGame: false
+            endGame: false,
+            winGame: false
         }
 
         this.handleClick = this.handleClick.bind(this);
@@ -36,7 +38,7 @@ class GameBoard extends Component{
     componentDidMount(){
         this.setState({
             cards: this.randomizeCards(doubleArray(cardData(this.state.level))),
-        }), (()=> this.setState({ transition: false }));
+        }), setTimeout(() => {this.setState({ transition: false })}, 1000);
     }
 
     handleClick(index){
@@ -63,16 +65,22 @@ class GameBoard extends Component{
             attempts++;
 
             if (attempts === 20 && matches !== cards.length/2){
-                    this.setState({
-                        transition: true
-                    }), setTimeout(() => {this.setState({endGame: true})}, 1000);
-                console.log('endGame:', this.state.endGame);
-            }
+                this.setState({
+                    transition: true
+                }), setTimeout(() => {this.setState({endGame: true})}, 1000);
+            } 
 
             if( card1 === card2 ){
                 matches++;
 
-                if( matches === cards.length/2){
+                if( matches === cards.length/2 && level === 3){
+                    console.log('You win!!');
+                    setTimeout(() => {
+                        this.setState({
+                            transition: true,
+                        }), setTimeout(() => {this.setState({ winGame: true })}, 500);
+                    }, 1500);
+                } else if( matches === cards.length/2){
                     setTimeout(() => {
                         level++;
                         this.setState({
@@ -82,8 +90,8 @@ class GameBoard extends Component{
                             matches: 0,
                             firstCard: null,
                             transition: true,
-                        })
-                    }, 3500);
+                        }), setTimeout(() => {this.setState({transition: false})}, 1000);
+                    }, 1000);
                 }
 
                 this.blockClick = false;
@@ -151,7 +159,7 @@ class GameBoard extends Component{
     }
 
     render(){
-        const {cards, matches, attempts, level, transition, autoLose, endGame} = this.state;
+        const {cards, matches, attempts, level, transition, autoLose, endGame, winGame} = this.state;
 
         const positionArr = [ 'one', 'two', 'three', 'four', 'five', 'six'];
 
@@ -172,9 +180,10 @@ class GameBoard extends Component{
                             <div className='stats'>Hosts Killed: {matches}</div>
                         </div>
                     </div>
-                <a className={ transition ? 'iris iris-activated' : '' }></a>
+                <a className={ transition ? 'iris iris-activated' : 'iris-deactivated' }></a>
                 <DoloresVideo autoLose={autoLose} playAgain={this.playAgain}/>
                 <EndGameVideo endGame={endGame} playAgain={this.playAgain}/>
+                <WinnerVideo winGame={winGame} playAgain={this.playAgain}/>
             </div>
         )
     }
