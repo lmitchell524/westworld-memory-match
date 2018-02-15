@@ -17,7 +17,7 @@ export default (props) => {
         <div className={ autoLose ? 'level1LoseScreen' : 'loseScreenHidden'}>
             <h1 className='gameOver'>Game Over!</h1>
             <iframe style={youTubeStyling} src={autoLose ? videoSrc + endSrc : ''} allowFullScreen></iframe>
-            <button className='playAgain'>Play Again</button>
+            <button className='playAgain' onClick={props.playAgain}>Play Again</button>
         </div>
     )
 }

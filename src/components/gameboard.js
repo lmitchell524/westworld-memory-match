@@ -4,7 +4,8 @@ import { doubleArray, transition } from './helper';
 import { cardData } from './card-data';
 import Header from './header';
 import cylinder from '../assets/images/level3/cylinder.png';
-import Video from './video';
+import DoloresVideo from './dolores_video';
+import EndGameVideo from './end_game_video';
 
 class GameBoard extends Component{
     constructor(props){
@@ -18,23 +19,24 @@ class GameBoard extends Component{
             attempts: 0,
             accuracy: 0,
             totalPossibleMatches: 9,
-            level: 1,
+            level: 2,
             transition: false,
             nextLevel: false,
-            autoLose: false
+            autoLose: false,
+            endGame: false
         }
 
         this.handleClick = this.handleClick.bind(this);
         this.randomizeCards = this.randomizeCards.bind(this);
         this.flipCard = this.flipCard.bind(this);
         this.blockClick = false;
+        this.playAgain = this.playAgain.bind(this);
     }
 
     componentDidMount(){
         this.setState({
             cards: this.randomizeCards(doubleArray(cardData(this.state.level))),
-            transition: false
-        });
+        }), (()=> this.setState({ transition: false }));
     }
 
     handleClick(index){
@@ -60,18 +62,17 @@ class GameBoard extends Component{
             this.flipCard(index);
             attempts++;
 
-            if (attempts === 20){
-                this.setState({
-                    transition: true
-                });
-                console.log('too many shots fired, you lose!!!!');
+            if (attempts === 20 && matches !== cards.length/2){
+                    this.setState({
+                        transition: true
+                    }), setTimeout(() => {this.setState({endGame: true})}, 1000);
+                console.log('endGame:', this.state.endGame);
             }
 
             if( card1 === card2 ){
                 matches++;
 
                 if( matches === cards.length/2){
-                    transition(console.log('game over'));
                     setTimeout(() => {
                         level++;
                         this.setState({
@@ -131,8 +132,26 @@ class GameBoard extends Component{
         return cardArray;
     }
 
+    playAgain(){
+        this.setState({
+            cards: this.randomizeCards(doubleArray(cardData(1))),
+            firstCard: null,
+            secondCard: null,
+            matches: 0,
+            attempts: 0,
+            accuracy: 0,
+            totalPossibleMatches: 9,
+            level: 1,
+            transition: false,
+            nextLevel: false,
+            autoLose: false,
+            endGame: false
+        }),
+        this.blockClick = false;
+    }
+
     render(){
-        const {cards, matches, attempts, level, transition, autoLose} = this.state;
+        const {cards, matches, attempts, level, transition, autoLose, endGame} = this.state;
 
         const positionArr = [ 'one', 'two', 'three', 'four', 'five', 'six'];
 
@@ -141,7 +160,7 @@ class GameBoard extends Component{
         });
         return(
             <div className={`main ${ level === 2 ? 'level2' : '' } ${ level === 3 ? 'level3' : '' }`}>
-                <Header/>
+                <Header level={level}/>
                     <div className={`gameContainer ${ level === 3 ? 'gameContainerLevel3' : '' }`}>
                             <div className={ level === 3 ? 'cylinderContainer' : ''}>
                                 { level === 3 ? <img className='cylinder' src={cylinder}/> : '' }
@@ -154,7 +173,8 @@ class GameBoard extends Component{
                         </div>
                     </div>
                 <a className={ transition ? 'iris iris-activated' : '' }></a>
-                <Video autoLose={autoLose}/>
+                <DoloresVideo autoLose={autoLose} playAgain={this.playAgain}/>
+                <EndGameVideo endGame={endGame} playAgain={this.playAgain}/>
             </div>
         )
     }

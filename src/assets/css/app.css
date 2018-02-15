@@ -31,10 +31,14 @@
     background-image: url('../images/bg_image6.jpg');
 }
 
-.logo{
+.logo {
     margin: 1%;
     width: 15%;
     height: 85%;
+}
+
+.logoLevel2 {
+    filter: invert(100%);
 }
 
 .statsContainer {
@@ -50,7 +54,7 @@
 }
 
 .statsContainerLevel2 {
-    background-color: #c5cdc5;
+    background-color: #ffffff;
     color: black;
 }
 
@@ -119,10 +123,21 @@ iframe {
     display: none;
 }
 
+.endGameLoseScreen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.endGameScreenHidden {
+    display: none;
+}
+
 .gameOver {
     color: white;
     text-align: center;
-    font-size: 10vmin;
+    font-size: 9vmin;
     padding-bottom: 5%;
     font-weight: normal;
 }
