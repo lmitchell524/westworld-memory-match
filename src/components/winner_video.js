@@ -1,8 +1,8 @@
 import React from 'react';
 
-export default (props) => {
+export default props => {
 
-    const {autoLose} = props;
+    const { winGame } = props;
 
     const youTubeStyling = {
         width: "560px",
@@ -14,9 +14,9 @@ export default (props) => {
     const endSrc = ';autoplay=1';
 
     return(
-        <div className={ autoLose ? 'showScreen' : 'hideScreen'}>
-            <h1 className='gameOver'>Game Over!</h1>
-            <iframe style={youTubeStyling} src={autoLose ? videoSrc + endSrc : ''} allowFullScreen></iframe>
+        <div className={ winGame ? 'showScreen' : 'hideScreen'}>
+            <h1 className='winner-text'>You Won!</h1>
+            <iframe style={youTubeStyling} src={winGame ? videoSrc + endSrc : ''} allowFullScreen></iframe>
             <button className='playAgain' onClick={props.playAgain}>Play Again</button>
         </div>
     )

@@ -14,7 +14,7 @@ export default (props) => {
     const endSrc = ';autoplay=1';
 
     return(
-        <div className={ endGame ? 'endGameLoseScreen' : 'endGameScreenHidden'}>
+        <div className={ endGame ? 'showScreen' : 'hideScreen'}>
             <h1 className='gameOver'>Too Many Shots Fired! Game Over!</h1>
             <iframe style={youTubeStyling} src={endGame ? videoSrc + endSrc : ''} allowFullScreen></iframe>
             <button className='playAgain' onClick={props.playAgain}>Play Again</button>
