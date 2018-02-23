@@ -2,9 +2,9 @@
 
 A Westworld inspired memory match game built in React and designed using HTML5 & CSS3.
 
-Live: lorimitchell.tech/apps/westworld/
+[Live:](lorimitchell.tech/apps/westworld/)
 
-##Mechanics
+## Mechanics
 
 * The game consists of three levels.
 * Match all the cards in each level to continue.
