@@ -20,36 +20,45 @@ class GameBoard extends Component{
             attempts: 0,
             accuracy: 0,
             totalPossibleMatches: 9,
-            level: 1,
+            level: 3,
             transition: false,
             nextLevel: false,
             autoLose: false,
             endGame: false,
-            winGame: false
+            winGame: false,
+            card1: null,
+            card2: null,
+            didCardsMatch: null,
+            degrees: 0,
+            rotateStyle: {
+                transform: 'rotateZ(0deg)'
+            }
         }
 
         this.handleClick = this.handleClick.bind(this);
         this.randomizeCards = this.randomizeCards.bind(this);
         this.flipCard = this.flipCard.bind(this);
-        this.blockClick = false;
         this.playAgain = this.playAgain.bind(this);
+        this.blockClick = false;
     }
 
     componentDidMount(){
+        const { level } = this.state;
+
         this.setState({
-            cards: this.randomizeCards(doubleArray(cardData(this.state.level))),
+            cards: this.randomizeCards(doubleArray(cardData(level))),
         }), setTimeout(() => {this.setState({ transition: false })}, 1000);
     }
 
     handleClick(index){
         if(this.blockClick === true) return;
 
-        const { cards} = this.state;
+        const { cards } = this.state;
         const currentCard = this.state.cards[index];
-        let { firstCard, secondCard, level, matches, attempts } = this.state;
-        let cardIndex = null;
+        let { firstCard, secondCard, level, matches, attempts, didCardsMatch, degrees } = this.state;
         let dolores = '/assets/images/bfe76d56eef65b611b72f9d26f0ceb9d.jpg';
         let manInBlack = '/assets/images/6df7f06e574dd016c2ff9d8c37b1519f.jpg';
+        let cardIndex = null;
 
         if(!currentCard.flipped && firstCard === null) {
             cardIndex = index;
@@ -68,10 +77,12 @@ class GameBoard extends Component{
                 this.setState({
                     transition: true
                 }), setTimeout(() => {this.setState({endGame: true})}, 1000);
-            } 
+            }
 
             if( card1 === card2 ){
                 matches++;
+                didCardsMatch = true;
+                degrees = degrees + 0;
 
                 if( matches === cards.length/2 && level === 3){
                     console.log('You win!!');
@@ -80,6 +91,7 @@ class GameBoard extends Component{
                             transition: true,
                         }), setTimeout(() => {this.setState({ winGame: true })}, 500);
                     }, 1500);
+
                 } else if( matches === cards.length/2){
                     setTimeout(() => {
                         level++;
@@ -89,9 +101,16 @@ class GameBoard extends Component{
                             attempts: 0,
                             matches: 0,
                             firstCard: null,
-                            transition: true,
-                        }), setTimeout(() => {this.setState({transition: false})}, 1000);
+                            transition: true
+                        }), setTimeout(() => {this.setState({
+                            transition: false
+                        })}, 1000);
                     }, 1000);
+                } else {
+                    this.setState({
+                        degrees: degrees,
+                        transform: 'rotateZ(' + (degrees) + 'deg)'
+                    })
                 }
 
                 this.blockClick = false;
@@ -100,21 +119,44 @@ class GameBoard extends Component{
                 this.setState({
                     transition: true,
                 }), setTimeout(() => {this.setState({autoLose: true})}, 1000);
+
             } else {
+                didCardsMatch = false;
+                console.log('degrees', degrees);
+                degrees = degrees + 360;
+                console.log('degrees after', degrees);
                 setTimeout(() => {
                     this.flipCard(firstCard);
                     this.flipCard(index);
                     this.blockClick = false;
                     firstCard = null;
                 }, 1000);
+
+                if(level === 3){
+                    let degreeArray = [ -360, 360, 720, -720, 1440, -1080, 1080, -1440 ];
+                    let randomIndex = Math.floor(Math.random() * 8 );
+                    console.log('new degrees', degreeArray[randomIndex]);
+
+                    setTimeout(() => {
+                    this.setState({
+                        didCardsMatch: didCardsMatch,
+                        matches: 0,
+                        degrees: degrees,
+                        rotateStyle: {
+                            transform: 'rotateZ(' + (degreeArray[randomIndex] + degrees) + 'deg)'
+                        },
+                        cards: this.randomizeCards(doubleArray(cardData(level, didCardsMatch)))
+                    })}, 1250);
+                }
             }
         }
-
         this.setState({
             attempts: attempts,
             matches: matches,
             firstCard: cardIndex,
+            didCardsMatch: didCardsMatch,
         });
+        console.log('state degrees:', degrees);
     }
 
     flipCard(index) {
@@ -159,7 +201,7 @@ class GameBoard extends Component{
     }
 
     render(){
-        const {cards, matches, attempts, level, transition, autoLose, endGame, winGame} = this.state;
+        const {cards, matches, attempts, level, transition, autoLose, endGame, winGame, rotateStyle } = this.state;
 
         const positionArr = [ 'one', 'two', 'three', 'four', 'five', 'six'];
 
@@ -170,7 +212,7 @@ class GameBoard extends Component{
             <div className={`main ${ level === 2 ? 'level2' : '' } ${ level === 3 ? 'level3' : '' }`}>
                 <Header level={level}/>
                     <div className={`gameContainer ${ level === 3 ? 'gameContainerLevel3' : '' }`}>
-                            <div className={ level === 3 ? 'cylinderContainer' : ''}>
+                            <div className={`${ level === 3 ? 'cylinderContainer' : ''}`} style={{...rotateStyle}}>
                                 { level === 3 ? <img className='cylinder' src={cylinder}/> : '' }
                                 { level === 3 ? cardElements : <div className="row">{cardElements}</div> }
                             </div>
