@@ -38,7 +38,7 @@
 }
 
 .logoLevel2 {
-    filter: invert(100%);
+    filter: invert(46%);
 }
 
 .statsContainer {
@@ -54,8 +54,9 @@
 }
 
 .statsContainerLevel2 {
-    background-color: #ffffff;
-    color: black;
+    background-color: #757575;
+    color: #e1e5dd;
+    border: 1px solid #e1e5dd;
 }
 
 .statsContainerLevel3 {

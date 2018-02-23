@@ -4,8 +4,6 @@
     width: 100%;
     margin-bottom: 1%;
     text-align: center;
-    cursor: url('../images/cursor.png'), auto;
-    /* cursor: pointer; */
 }
 
 .card {
@@ -18,9 +16,14 @@
     transition: all .5s ease-in-out;
 }
 
-/* .cardLevel3 {
-    width: 20%;
-} */
+.card:hover.cursor {
+    cursor: url('../images/cursor2.png'), auto;
+}
+
+.card:hover.pointer {
+    cursor: pointer;
+}
+
 
 .front, .back {
     position: absolute;

@@ -1,4 +1,4 @@
-import dolores from '../assets/images/level2/dolores_lab.jpeg';
+import dolores from '../assets/images/level2/dolores_robot.jpg';
 import charolette from '../assets/images/level2/charolette.jpg';
 import hector from '../assets/images/level2/hector.jpg';
 import logan from '../assets/images/level2/logan.jpg';
