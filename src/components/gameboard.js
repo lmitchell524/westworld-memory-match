@@ -106,7 +106,6 @@ class GameBoard extends Component{
                             attempts: 0,
                             matches: 0,
                             firstCard: null,
-                            // transition: true
                         }), setTimeout(() => {this.setState({
                             transition: false
                         })}, 1000);
