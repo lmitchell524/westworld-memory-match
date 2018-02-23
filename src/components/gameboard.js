@@ -20,7 +20,7 @@ class GameBoard extends Component{
             attempts: 0,
             accuracy: 0,
             totalPossibleMatches: 9,
-            level: 1,
+            level: 3,
             transition: false,
             nextLevel: false,
             autoLose: false,
@@ -221,7 +221,7 @@ class GameBoard extends Component{
                         <div className={`statsContainer ${ level === 2 ? 'statsContainerLevel2' : '' } ${ level === 3 ? 'statsContainerLevel3' : '' }`}>
                             <div className='stats'>Shots Fired: {attempts}</div>
                             <div className='stats'>Targets Hit: {matches > 0 ? Math.floor(matches/attempts * 100) + '%' : 0}</div>
-                            <div className='stats'>Hosts Killed: {matches}</div>
+                            <div className='stats'>Hosts: {matches}</div>
                         </div>
                     </div>
                 <a className={`iris ${ transition ? 'iris iris-activated' : 'iris-deactivated' }`}></a>
