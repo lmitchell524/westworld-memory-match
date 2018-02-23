@@ -156,15 +156,6 @@ iframe {
     background-color: #4a4747;
 }
 
-/**************** level 3 css *********************/
-
-.cylinder {
-    position: absolute;
-    top: 10%;
-    left: 20%;
-    height: 75vh;
-}
-
 
 /***************** media queries *******************/
 
@@ -192,9 +183,4 @@ iframe {
           max-width: 100%;
           width: 90vw;
       }
-
-      /* iframe {
-          height: 40vmin;
-          width: 50vmin;
-      } */
   }
