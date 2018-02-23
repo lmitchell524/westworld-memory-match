@@ -12,7 +12,11 @@
     width: 70vmin;
     height: 70vmin;
     transition: 1s;
-    transform: rotateZ(720deg);
+    transform: rotateZ(0deg);
+}
+
+.cylinderContainer-rotate {
+    transform: rotateZ(0deg);
 }
 
 .one {
