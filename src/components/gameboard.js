@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Card from './card';
-import { doubleArray, transition } from './helper';
+import { doubleArray } from './helper';
 import { cardData } from './card-data';
 import Header from './header';
 import cylinder from '../assets/images/level3/cylinder.png';
@@ -20,7 +20,7 @@ class GameBoard extends Component{
             attempts: 0,
             accuracy: 0,
             totalPossibleMatches: 9,
-            level: 3,
+            level: 1,
             transition: false,
             nextLevel: false,
             autoLose: false,
@@ -78,6 +78,7 @@ class GameBoard extends Component{
                     transition: true
                 }), setTimeout(() => {this.setState({endGame: true})}, 1000);
             }
+            //this function isn't working. If you get all matches at 20 attempts it ends game and send to next level
 
             if( card1 === card2 ){
                 matches++;
@@ -89,10 +90,14 @@ class GameBoard extends Component{
                     setTimeout(() => {
                         this.setState({
                             transition: true,
-                        }), setTimeout(() => {this.setState({ winGame: true })}, 500);
+                        }), setTimeout(() => {this.setState({ winGame: true })}, 1500);
                     }, 1500);
 
                 } else if( matches === cards.length/2){
+                    setTimeout(() => {
+                        this.setState({
+                            transition: true
+                        }),
                     setTimeout(() => {
                         level++;
                         this.setState({
@@ -101,11 +106,13 @@ class GameBoard extends Component{
                             attempts: 0,
                             matches: 0,
                             firstCard: null,
-                            transition: true
+                            // transition: true
                         }), setTimeout(() => {this.setState({
                             transition: false
                         })}, 1000);
                     }, 1000);
+                }, 1000);
+
                 } else {
                     this.setState({
                         degrees: degrees,
@@ -122,9 +129,7 @@ class GameBoard extends Component{
 
             } else {
                 didCardsMatch = false;
-                console.log('degrees', degrees);
                 degrees = degrees + 360;
-                console.log('degrees after', degrees);
                 setTimeout(() => {
                     this.flipCard(firstCard);
                     this.flipCard(index);
@@ -135,7 +140,6 @@ class GameBoard extends Component{
                 if(level === 3){
                     let degreeArray = [ -360, 360, 720, -720, 1440, -1080, 1080, -1440 ];
                     let randomIndex = Math.floor(Math.random() * 8 );
-                    console.log('new degrees', degreeArray[randomIndex]);
 
                     setTimeout(() => {
                     this.setState({
@@ -156,7 +160,6 @@ class GameBoard extends Component{
             firstCard: cardIndex,
             didCardsMatch: didCardsMatch,
         });
-        console.log('state degrees:', degrees);
     }
 
     flipCard(index) {
@@ -222,7 +225,7 @@ class GameBoard extends Component{
                             <div className='stats'>Hosts Killed: {matches}</div>
                         </div>
                     </div>
-                <a className={ transition ? 'iris iris-activated' : 'iris-deactivated' }></a>
+                <a className={`iris ${ transition ? 'iris iris-activated' : 'iris-deactivated' }`}></a>
                 <DoloresVideo autoLose={autoLose} playAgain={this.playAgain}/>
                 <EndGameVideo endGame={endGame} playAgain={this.playAgain}/>
                 <WinnerVideo winGame={winGame} playAgain={this.playAgain}/>
