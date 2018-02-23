@@ -2,7 +2,7 @@
 
 A Westworld inspired memory match game built in React and designed using HTML5 & CSS3.
 
-[Play it Now!](lorimitchell.tech/apps/westworld/)
+[Play it Now!](https://lorimitchell.tech/apps/westworld/)
 
 ## Mechanics
 
