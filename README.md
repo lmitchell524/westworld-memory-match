@@ -1,3 +1,12 @@
-# React Memory Match
+# Westworld Memory Match
 
-> Instructions can be found here <a href="http://reactprototypes.com/projects/memory-match">http://reactprototypes.com/projects/memory-match</a>
+A Westworld inspired memory match game built in React and designed using HTML5 & CSS3.
+
+Live: lorimitchell.tech/apps/westworld/
+
+##Mechanics
+
+* The game consists of three levels.
+* Match all the cards in each level to continue.
+* Watch out for trigger cards, which will automatically end the game.
+* Fire too many shots, Game Over!
