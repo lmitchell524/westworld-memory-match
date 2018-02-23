@@ -90,9 +90,9 @@
     height: 100vh;
     /* border-radius: 50%; */
     box-sizing: border-box;
-    transition: .8s all ease-in;
+    transition: 1s all ease-in;
     text-decoration: none;
-    border: 0 solid rgba(0,0,0,1);
+    border: 0px solid rgba(0,0,0,1);
 }
 
 .iris-activated {
@@ -101,13 +101,10 @@
 }
 
 .iris-deactivated {
-    display: none;
+    border: 0vmin solid rgba(0,0,0,.85);
+    z-index: -10;
 }
 
-/* .iris.animation {
-    background-position: center;
-    background-size: 100vmin 100vmin;
-} */
 
 /**************** level 1 lose screen *********************/
 
@@ -121,6 +118,7 @@ iframe {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    text-align: center;
 }
 
 .hideScreen {
