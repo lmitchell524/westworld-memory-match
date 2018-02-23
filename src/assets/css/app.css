@@ -111,6 +111,8 @@
 iframe {
     border-radius: 1%;
     border-style: solid;
+    height: 55vmin;
+    width: 100vmin;
 }
 
 .showScreen {
@@ -190,4 +192,9 @@ iframe {
           max-width: 100%;
           width: 90vw;
       }
+
+      /* iframe {
+          height: 40vmin;
+          width: 50vmin;
+      } */
   }
