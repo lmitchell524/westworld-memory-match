@@ -5,8 +5,6 @@ export default (props) => {
     const {endGame} = props;
 
     const youTubeStyling = {
-        // width: "560px",
-        // height: "315px",
         frameborder: "0",
     }
 

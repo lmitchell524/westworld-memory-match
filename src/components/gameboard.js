@@ -20,7 +20,7 @@ class GameBoard extends Component{
             attempts: 0,
             accuracy: 0,
             totalPossibleMatches: 9,
-            level: 3,
+            level: 1,
             transition: false,
             nextLevel: false,
             autoLose: false,
@@ -73,20 +73,12 @@ class GameBoard extends Component{
             this.flipCard(index);
             attempts++;
 
-            if (attempts === 20 && matches !== cards.length/2){
-                this.setState({
-                    transition: true
-                }), setTimeout(() => {this.setState({endGame: true})}, 1000);
-            }
-            //this function isn't working. If you get all matches at 20 attempts it ends game and send to next level
-
             if( card1 === card2 ){
                 matches++;
                 didCardsMatch = true;
                 degrees = degrees + 0;
 
                 if( matches === cards.length/2 && level === 3){
-                    console.log('You win!!');
                     setTimeout(() => {
                         this.setState({
                             transition: true,
@@ -151,6 +143,12 @@ class GameBoard extends Component{
                         cards: this.randomizeCards(doubleArray(cardData(level, didCardsMatch)))
                     })}, 1250);
                 }
+            }
+
+            if (attempts === 20 && matches !== cards.length/2){
+                this.setState({
+                    transition: true
+                }), setTimeout(() => {this.setState({endGame: true})}, 1000);
             }
         }
         this.setState({
@@ -221,7 +219,7 @@ class GameBoard extends Component{
                         <div className={`statsContainer ${ level === 2 ? 'statsContainerLevel2' : '' } ${ level === 3 ? 'statsContainerLevel3' : '' }`}>
                             <div className='stats'>Shots Fired: {attempts}</div>
                             <div className='stats'>Targets Hit: {matches > 0 ? Math.floor(matches/attempts * 100) + '%' : 0}</div>
-                            <div className='stats'>Hosts: {matches}</div>
+                            <div className='stats'>Kills: {matches}</div>
                         </div>
                     </div>
                 <a className={`iris ${ transition ? 'iris iris-activated' : 'iris-deactivated' }`}></a>
