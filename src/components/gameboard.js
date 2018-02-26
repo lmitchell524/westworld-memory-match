@@ -73,8 +73,6 @@ class GameBoard extends Component{
             this.flipCard(index);
             attempts++;
 
-            console.log('Card1:', card1, 'Dolores:', dolores, 'Card2:', card2, 'Man In Black:', manInBlack);
-
             if( card1 === card2 ){
                 matches++;
                 didCardsMatch = true;
