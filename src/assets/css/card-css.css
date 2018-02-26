@@ -17,14 +17,9 @@
     transition: all .5s ease-in-out;
 }
 
-.card:hover.cursor {
+.card:hover{
     cursor: pointer;
 }
-
-.card:hover.pointer {
-    cursor: pointer;
-}
-
 
 .front, .back {
     position: absolute;
