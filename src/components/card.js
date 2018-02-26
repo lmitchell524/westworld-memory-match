@@ -48,11 +48,11 @@ export default props => {
     const { flipCard, level, position, card: { front, back, flipped, index }} = props;
 
     return (
-            <div onClick={flipCard} style={level === 3 ? bulletCard : fillerStyle } className={`card ${flipped ? 'flipped' : ''} ${ level === 3 ? 'cardLevel3' : '' } ${ level === 3 ? position : '' }` }>
+            <div style={level === 3 ? bulletCard : fillerStyle } className={`card ${flipped ? 'flipped' : ''} ${ level === 3 ? 'cardLevel3' : '' } ${ level === 3 ? position : '' }` }>
                 <div style={ level === 3 ? bulletFront : fillerStyle } className='front'>
                     <img src={front}/>
                 </div>
-                <div className='back' style={ level === 3 ? bulletBack : fillerStyle }>
+                <div onClick={flipCard} className='back' style={ level === 3 ? bulletBack : fillerStyle }>
                     <img src={back}/>
                 </div>
             </div>
