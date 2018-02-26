@@ -52,7 +52,7 @@ export default props => {
                 <div style={ level === 3 ? bulletFront : fillerStyle } className='front'>
                     <img src={front}/>
                 </div>
-                <div  className='back' style={ level === 3 ? bulletBack : fillerStyle }>
+                <div className='back' style={ level === 3 ? bulletBack : fillerStyle }>
                     <img src={back}/>
                 </div>
             </div>
