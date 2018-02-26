@@ -18,7 +18,7 @@
 }
 
 .card:hover.cursor {
-    cursor: url('../images/cursor2.png'), auto;
+    cursor: pointer;
 }
 
 .card:hover.pointer {
