@@ -56,8 +56,8 @@ class GameBoard extends Component{
         const { cards } = this.state;
         const currentCard = this.state.cards[index];
         let { firstCard, secondCard, level, matches, attempts, didCardsMatch, degrees } = this.state;
-        let dolores = '/assets/images/bfe76d56eef65b611b72f9d26f0ceb9d.jpg';
-        let manInBlack = '/assets/images/6df7f06e574dd016c2ff9d8c37b1519f.jpg';
+        let dolores = '/dist/assets/images/bfe76d56eef65b611b72f9d26f0ceb9d.jpg';
+        let manInBlack = '/dist/assets/images/6df7f06e574dd016c2ff9d8c37b1519f.jpg';
         let cardIndex = null;
 
         if(!currentCard.flipped && firstCard === null) {
