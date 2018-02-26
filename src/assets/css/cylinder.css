@@ -13,14 +13,17 @@
     height: 70vmin;
     transition: 1s;
     transform: rotateZ(0deg);
+    -webkit-transform: rotateZ(0deg);
 }
 
 .cylinderContainer-rotate {
     transform: rotateZ(0deg);
+    -webkit-transform: rotateZ(0deg);
 }
 
 .one {
     transform: rotateZ(109deg);
+    -webkit-transform: rotateZ(109deg);
     bottom: 7.5%;
     right: 23.5%;
 }
@@ -32,18 +35,21 @@
 
 .three {
     transform: rotateZ(80deg);
+    -webkit-transform: rotateZ(90deg);
     top: 11%;
     right: 16%;
 }
 
 .four {
     transform: rotateZ(300deg);
+    -webkit-transform: rotateZ(300deg);
     top: 39.5%;
     right: 4%;
 }
 
 .five {
     transform: rotateZ(200deg);
+    -webkit-transform: rotateZ(200deg);
     top: 32%;
     left: 5%;
 }
@@ -55,6 +61,7 @@
 
 .flipped {
     transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
 }
 
 /***************** media queries *******************/
