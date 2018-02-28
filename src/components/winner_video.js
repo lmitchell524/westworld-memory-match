@@ -8,7 +8,7 @@ export default props => {
         frameborder: "0",
     }
 
-    const videoSrc = 'https://www.youtube.com/embed/S94ETUiMZwQ?rel=0&amp;showinfo=0&amp;start=77;end=110'; 
+    const videoSrc = 'https://www.youtube.com/embed/S94ETUiMZwQ?rel=0&amp;showinfo=0&amp;start=77;end=92'; 
     const endSrc = ';autoplay=1';
 
     return(

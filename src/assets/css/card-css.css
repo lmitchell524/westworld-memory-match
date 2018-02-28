@@ -1,13 +1,11 @@
 
 .row {
-    /* height: 21vh; */
     width: 100%;
     margin-bottom: 1%;
     text-align: center;
 }
 
 .card {
-    /* height: 100%; */
     width: 15.6%;
     max-width: 11vmax;
     display: inline-block;
@@ -15,8 +13,6 @@
     transform-style: preserve-3d;
     -webkit-transform-style: preserve-3d;
     transition: all .5s ease-in-out;
-    /* max-width: 146px;
-    max-height: 184px; */
 }
 
 .back:hover {
@@ -24,11 +20,9 @@
 }
 
 .front, .back {
-    /* position: absolute; */
     top: 0;
     left: 0;
     width: 100%;
-    /* height: 100%; */
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     overflow: hidden;
