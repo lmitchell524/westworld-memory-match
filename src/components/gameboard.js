@@ -16,11 +16,11 @@ class GameBoard extends Component{
             cards: [],
             firstCard: null,
             secondCard: null,
-            matches: 0,
-            attempts: 0,
-            accuracy: 0,
+            matches: 8,
+            attempts: 19,
+            accuracy: 33,
             totalPossibleMatches: 9,
-            level: 1,
+            level: 3,
             transition: false,
             nextLevel: false,
             autoLose: false,
@@ -212,17 +212,17 @@ class GameBoard extends Component{
         return(
             <div className={`main ${ level === 2 ? 'level2' : '' } ${ level === 3 ? 'level3' : '' }`}>
                 <Header level={level}/>
-                    <div className={`gameContainer ${ level === 3 ? 'gameContainerLevel3' : '' }`}>
-                            <div className={`${ level === 3 ? 'cylinderContainer' : ''}`} style={{...rotateStyle}}>
-                                { level === 3 ? <img className='cylinder' src={cylinder}/> : '' }
-                                { level === 3 ? cardElements : <div className="row">{cardElements}</div> }
-                            </div>
-                        <div className={`statsContainer ${ level === 2 ? 'statsContainerLevel2' : '' } ${ level === 3 ? 'statsContainerLevel3' : '' }`}>
-                            <div className='stats'>Shots Fired: {attempts}</div>
-                            <div className='stats'>Targets Hit: {matches > 0 ? Math.floor(matches/attempts * 100) + '%' : 0}</div>
-                            <div className='stats'>Kills: {matches}</div>
-                        </div>
+                <div className={`gameContainer ${ level === 3 ? 'gameContainerLevel3' : '' }`}>
+                    <div className={`${ level === 3 ? 'cylinderContainer' : ''}`} style={{...rotateStyle}}>
+                        { level === 3 ? <img className='cylinder' src={cylinder}/> : '' }
+                        { level === 3 ? cardElements : <div className="row">{cardElements}</div> }
                     </div>
+                    <div className={`statsContainer ${ level === 2 ? 'statsContainerLevel2' : '' } ${ level === 3 ? 'statsContainerLevel3' : '' }`}>
+                        <div className='stats'>Shots Fired: {attempts}</div>
+                        <div className='stats'>Targets Hit: {matches > 0 ? Math.floor(matches/attempts * 100) + '%' : 0}</div>
+                        <div className='stats'>Kills: {matches}</div>
+                    </div>
+                </div>
                 <a className={`iris ${ transition ? 'iris iris-activated' : 'iris-deactivated' }`}></a>
                 <DoloresVideo autoLose={autoLose} playAgain={this.playAgain}/>
                 <EndGameVideo endGame={endGame} playAgain={this.playAgain}/>
