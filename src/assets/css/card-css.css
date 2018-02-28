@@ -73,9 +73,6 @@
   and (min-width: 360px)
   and (max-width: 768px)
   and (orientation: landscape) {
-      /* .card {
-          width: 19%;
-      } */
 
       .front, .back {
           border-radius: 5px;
