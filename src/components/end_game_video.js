@@ -9,7 +9,7 @@ export default (props) => {
     }
 
     const randomIndex = Math.floor(Math.random() * 2);
-    const videoArray = ['https://www.youtube.com/embed/B2sdH3xZs2Q?rel=0&amp;showinfo=0&amp;start=132;end=140', 'https://www.youtube.com/embed/vmOXlt83jtI?rel=0&amp;showinfo=0&amp;start=72;end=94']
+    const videoArray = ['https://www.youtube.com/embed/B2sdH3xZs2Q?rel=0&amp;showinfo=0&amp;start=132;end=140', 'https://www.youtube.com/embed/vmOXlt83jtI?rel=0&amp;showinfo=0&amp;start=72;end=95']
     const endSrc = ';autoplay=1';
 
     return(
