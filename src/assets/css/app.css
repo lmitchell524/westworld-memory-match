@@ -11,7 +11,6 @@
 
 .main {
     height: 100vh;
-    /* width: 100vw; */
     overflow: hidden;
     color: white;
     margin: auto;
@@ -43,10 +42,6 @@
 .statsContainer {
     position: relative;
     height: 10vh;
-    /* width: 70vw; */
-    /* top: 90vh;
-    left: 50%;
-    transform: translate(-50%, -50%); */
     border: 1px solid black;
     background-color: black;
     text-align: center;
@@ -73,10 +68,6 @@
 .gameContainer {
     width: 80vw;
     margin: auto;
-    /* position: relative;
-    transform: translate(-50%, -50%);
-    top: 50%;
-    left: 50%; */
 }
 
 .gameContainer.gameContainerLevel3 {
@@ -165,7 +156,6 @@ iframe {
 /***************** media queries *******************/
 
 @media only screen
-  and (min-width: 320px)
   and (max-width: 450px)
   and (orientation: portrait){
     .gameContainer {
@@ -178,9 +168,8 @@ iframe {
 }
 
 @media only screen
-  and (min-width: 360px)
-  and (max-width: 768px)
-  and (orientation: landscape) {
+  and (max-height: 414px)
+  and (max-width: 768px) {
       .gameContainer {
           position: absolute;
           left: 0;
@@ -226,8 +215,19 @@ iframe {
 
     }
 
+
+    @media only screen and (max-width: 1000px){
+        .header {
+            margin-bottom: 7vh;
+        }
+    }
+
   @media only screen and (min-width: 1200px) {
       .gameContainer {
           width: 60vw;
+      }
+
+      .header {
+          margin-bottom: 1.25vh;
       }
   }
