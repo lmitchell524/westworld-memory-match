@@ -11,7 +11,7 @@
 
 .main {
     height: 100vh;
-    overflow: hidden;
+    overflow: auto;
     color: white;
     margin: auto;
     position: relative;
@@ -218,7 +218,7 @@ iframe {
 
     @media only screen and (max-width: 1000px){
         .header {
-            margin-bottom: 7vh;
+            margin-bottom: 4vh;
         }
     }
 

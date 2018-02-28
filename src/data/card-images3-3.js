@@ -1,5 +1,5 @@
 import bernard_gun from '../assets/images/level3-3/bernard_gun.png';
-import dolores_gun from '../assets/images/level3-3/dolores.jpg';
+import dolores_gun from '../assets/images/level3-3/dolores_gun.png';
 import man_in_black from '../assets/images/level3-3/man_in_black.jpg';
 
 export default [
