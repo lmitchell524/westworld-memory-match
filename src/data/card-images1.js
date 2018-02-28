@@ -1,4 +1,4 @@
-import bernard from '../assets/images/level1/bernard.jpg';
+import bernard from '../assets/images/level1/bernard.jpeg';
 import clementine from '../assets/images/level1/clementine.jpg';
 import doloresBlue from '../assets/images/level1/dolores_blue.jpg';
 import elsie from '../assets/images/level1/elsie.jpg';

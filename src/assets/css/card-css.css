@@ -17,7 +17,7 @@
     transition: all .5s ease-in-out;
 }
 
-.card:hover {
+.back:hover {
     cursor: pointer;
 }
 
