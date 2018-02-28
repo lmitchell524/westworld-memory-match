@@ -178,15 +178,15 @@ iframe {
 
       .statsContainer {
           position: absolute;
-          height: 60vh;
+          height: 70vh;
           width: 15vw;
           right: -15vw;
-          top: 10vh;
+          top: 5vh;
       }
 
       .stats {
           font-size: 4vmin;
-          margin: 20%;
+          margin: 15%;
       }
 
       .gameContainerLevel3 {
