@@ -20,7 +20,7 @@ class GameBoard extends Component{
             attempts: 0,
             accuracy: 0,
             totalPossibleMatches: 9,
-            level: 1,
+            level: 3,
             transition: false,
             nextLevel: false,
             autoLose: false,
