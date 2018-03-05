@@ -1,7 +1,7 @@
 {
-  "name": "react_starter",
+  "name": "Westworld Draw",
   "version": "1.0.0",
-  "description": "Starting setup for react redux project",
+  "description": "Memory match game built in React",
   "main": "index.js",
   "scripts": {
     "start": "node dev_server.js",
