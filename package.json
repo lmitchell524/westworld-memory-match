@@ -1,5 +1,5 @@
 {
-  "name": "Westworld Draw",
+  "name": "Westworld_Draw",
   "version": "1.0.0",
   "description": "Memory match game built in React",
   "main": "index.js",
